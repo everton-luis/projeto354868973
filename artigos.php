@@ -19,6 +19,7 @@ include('classe/bo/artigosBO1.php');
 //$bo = new artigosBO();
 $var1 = new artigoBO1();
 $artigos = $var1->GetAll();
+$result = count($artigos);
 // $catBO = new classe\bo\GenericoBO('categoria');
 
 $data = new DateTime('now');
@@ -164,6 +165,7 @@ if (isset($_SESSION['msgSuccess'])) {
                                 <?php
                                     // Exibe teste
                                     //if(!empty($artigos)){
+                                    if($result > 0){
                                     foreach ($artigos as $artigo):?>
                                         <tr>
                                             
@@ -208,7 +210,11 @@ if (isset($_SESSION['msgSuccess'])) {
                                             </td>
                                         </tr>
                                 <?php /* endforeach; }else{ */?>
-                                <?php  endforeach; ?>
+                                <?php  endforeach; }else{ ?>
+                                    <tr>
+                                        <td colspan="4" style="text-align:center;">Não possui artigos</td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                         <hr/>
